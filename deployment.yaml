@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gkc-with-ci-cd
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: gkc-with-ci-cd
+  template:
+    metadata:
+      labels:
+        app: gkc-with-ci-cd
+    spec:
+      containers:
+        - name: gkc-with-ci-cd
+          image: gcr.io/for-poc-325210/gkc-with-ci-cd:[COMMIT_SHA]
+          ports:
+            - containerPort: 9000
